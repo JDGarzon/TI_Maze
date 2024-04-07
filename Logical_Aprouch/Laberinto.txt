@@ -1,0 +1,48 @@
+move(X, left,X1) :- X1 is X - 1.
+move(X, right,X1) :- X1 is X + 1.
+move(Y, up,Y1) :- Y1 is Y + 1.
+move(Y, down,Y1) :- Y1 is Y - 1.
+
+%First Line
+maze(1,5,[right,open],[left,closed],[up,closed],[down,closed]).
+maze(2,5,[right,open],[left,open],[up,closed],[down,closed]).
+maze(3,5,[right,open],[left,open],[up,closed],[down,open]).
+maze(4,5,[right,open],[left,open],[up,closed],[down,close]).
+maze(5,5,[right,closed],[left,open],[up,closed],[down,open]).
+
+%Second Line
+maze(1,4,[right,open],[left,closed],[up,closed],[down,open]).
+maze(2,4,[right,open],[left,open],[up,closed],[down,closed]).
+maze(3,4,[right,open],[left,open],[up,open],[down,open]).
+maze(4,4,[right,closed],[left,open],[up,closed],[down,closed]).
+maze(5,4,[right,closed],[left,closed],[up,open],[down,open]).
+
+%Third Line
+maze(1,3,[right,closed],[left,closed],[up,open],[down,open]).
+maze(2,3,[right,open],[left,closed],[up,closed],[down,open]).
+maze(3,3,[right,cloed],[left,open],[up,open],[down,open]).
+maze(4,3,[right,open],[left,closed],[up,closed],[down,close]).
+maze(5,3,[right,closed],[left,open],[up,open],[down,closed]).
+
+%Fourth Line
+maze(1,2,[right,closed],[left,closed],[up,open],[down,open]).
+maze(2,2,[right,closed],[left,closed],[up,open],[down,open]).
+maze(3,2,[right,open],[left,closed],[up,open],[down,open]).
+maze(4,2,[right,open],[left,open],[up,closed],[down,closed]).
+maze(5,2,[right,closed],[left,open],[up,closed],[down,closed]).
+
+%Fifth Line
+maze(1,1,[rigth,closed],[left,closed],[up,open],[down,closed]).
+maze(2,1,[rigth,open],[left,closed],[up,open],[down,closed]).
+maze(3,1,[rigth,open],[left,open],[up,closed],[down,closed]).
+maze(4,1,[rigth,open],[left,open],[up,closed],[down,closed]).
+maze(5,1,[rigth,closed],[left,open],[up,closed],[down,closed],goal).
+
+
+is_valid_move(X, Y, left) :-  maze(X,Y,_,[left,open],_,_).
+is_valid_move(X, Y, right) :- maze(X,Y,[right,open],_,_,_).
+
+is_valid_move(X, Y, up) :-  maze(X,Y,_,_,[up,open],_).
+is_valid_move(X, Y, down) :- maze(X,Y,_,_,_,[down,open]).
+
+reach_goal(X,Y):- maze(X,Y,_,_,_,_,goal).
