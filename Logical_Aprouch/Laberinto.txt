@@ -1,8 +1,3 @@
-move(X, left,X1) :- X1 is X - 1.
-move(X, right,X1) :- X1 is X + 1.
-move(Y, up,Y1) :- Y1 is Y + 1.
-move(Y, down,Y1) :- Y1 is Y - 1.
-
 %First Line
 maze(1,5,[right,open],[left,closed],[up,closed],[down,closed]).
 maze(2,5,[right,open],[left,open],[up,closed],[down,closed]).
@@ -45,4 +40,9 @@ is_valid_move(X, Y, right) :- maze(X,Y,[right,open],_,_,_).
 is_valid_move(X, Y, up) :-  maze(X,Y,_,_,[up,open],_).
 is_valid_move(X, Y, down) :- maze(X,Y,_,_,_,[down,open]).
 
-reach_goal(X,Y):- maze(X,Y,_,_,_,_,goal).
+move(X,Y,left,X1,Y1) :- X1 is X - 1,Y1 is Y,is_valid_move(X,Y,left).
+move(X,Y,right,X1,Y1) :- X1 is X + 1,Y1 is Y,is_valid_move(X,Y,right).
+move(X,Y, up,X1,Y1) :- Y1 is Y + 1,X1 is X,is_valid_move(X,Y,up).
+move(X,Y, down,X1,Y1) :- Y1 is Y - 1,X1 is X,is_valid_move(X,Y,down).
+
+is_goal(X,Y):- maze(X,Y,_,_,_,_,goal).
